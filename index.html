@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圖片博物館</title>
+    <style>
+      body { font-family: sans-serif; padding: 2em; text-align: center; }
+      input { padding: 0.5em; margin-bottom: 1em; }
+      .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1em; }
+      .gallery img { max-width: 100%; height: auto; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+    <h1>禮包圖鑑</h1>
+    <input type="text" id="search" placeholder="搜尋圖片..." oninput="filterImages()" />
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+      const images = [
+        { title: "1", src: "images/15-candle-pack.png" },
+        { title: "2", src: "images/30-candle-pack.png" },
+        { title: "3", src: "images/60-candle-pack.png" },
+        { title: "4", src: "images/150-candle-pack.png" }
+      ];
+
+      const gallery = document.getElementById("gallery");
+      const searchInput = document.getElementById("search");
+
+      function renderImages() {
+        const keyword = searchInput.value.toLowerCase();
+        gallery.innerHTML = images
+          .filter(img => img.title.toLowerCase().includes(keyword))
+          .map(img => \`<div><img src="\${img.src}" alt="\${img.title}" /><p>\${img.title}</p></div>\`)
+          .join("");
+      }
+
+      function filterImages() {
+        renderImages();
+      }
+
+      renderImages();
+    </script>
+  </body>
+</html>
