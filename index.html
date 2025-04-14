@@ -13,33 +13,33 @@
   </head>
   <body>
     <h1>禮包圖鑑</h1>
-    <input type="text" id="search" placeholder="搜尋圖片..." oninput="filterImages()" />
+    <input type="text" id="search" placeholder="搜尋圖片..." />
     <div class="gallery" id="gallery"></div>
 
     <script>
       const images = [
-        { title: "15蠟燭包 $4.99", src: "images/15-candle-pack.png" },
-        { title: "30蠟燭包 $9.99", src: "images/30-candle-pack.png" },
-        { title: "60蠟燭包 $19.99", src: "images/60-candle-pack.png" },
-        { title: "150蠟燭包 $49.99", src: "images/150-candle-pack.png" }
+        { title: "15蠟燭包 $4.99美元", src: "images/15-candle-pack.png" },
+        { title: "30蠟燭包 $9.99美元", src: "images/30-candle-pack.png" },
+        { title: "60蠟燭包 $19.99美元", src: "images/60-candle-pack.png" },
+        { title: "150蠟燭包 $49.99美元", src: "images/150-candle-pack.png" }
       ];
 
       const gallery = document.getElementById("gallery");
       const searchInput = document.getElementById("search");
 
-      function renderImages() {
-        const keyword = searchInput.value.toLowerCase();
-        gallery.innerHTML = images
-          .filter(img => img.title.toLowerCase().includes(keyword))
-          .map(img => \`<div><img src="\${img.src}" alt="\${img.title}" /><p>\${img.title}</p></div>\`)
+      function renderImages(filter = "") {
+        const keyword = filter.toLowerCase();
+        const filtered = images.filter(img => img.title.toLowerCase().includes(keyword));
+        gallery.innerHTML = filtered
+          .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
           .join("");
       }
 
-      function filterImages() {
-        renderImages();
-      }
+      searchInput.addEventListener("input", () => {
+        renderImages(searchInput.value);
+      });
 
-      renderImages();
+      renderImages(); // 預設顯示全部
     </script>
   </body>
 </html>
