@@ -21,7 +21,6 @@
   <body>
     <h1>光遇禮包圖鑑</h1>
     <input type="text" id="search" placeholder="關鍵字搜尋" />
-    <p id="result-count">共找到 0 筆結果</p>
     <div class="gallery" id="gallery"></div>
 
     <script>
@@ -70,9 +69,6 @@
           .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
           .join("");
       }
-
-        const resultCount = document.getElementById("result-count");
-        resultCount.textContent = `共找到 ${filtered.length} 筆結果`;
 
       searchInput.addEventListener("input", () => {
         renderImages(searchInput.value);
