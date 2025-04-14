@@ -6,21 +6,40 @@
     <title>Gift Pack</title>
     <style>
       body {
-  background-image: url('images/background.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-}
-      body { font-family: sans-serif; padding: 2em; text-align: center; }
-      input { padding: 0.5em; margin-bottom: 1em; }
-      .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1em; }
-      .gallery img { max-width: 100%; height: auto; border-radius: 8px; }
+        background-image: url('images/background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        font-family: sans-serif;
+        padding: 2em;
+        text-align: center;
+      }
+      input {
+        padding: 0.5em;
+        margin-bottom: 1em;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1em;
+      }
+      .gallery img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+      #result-count {
+        margin-bottom: 1em;
+        font-weight: bold;
+        color: #333;
+      }
     </style>
   </head>
   <body>
     <h1>光遇禮包圖鑑</h1>
     <input type="text" id="search" placeholder="關鍵字搜尋" />
+    <div id="result-count"></div>
     <div class="gallery" id="gallery"></div>
 
     <script>
@@ -61,6 +80,7 @@
 
       const gallery = document.getElementById("gallery");
       const searchInput = document.getElementById("search");
+      const resultCount = document.getElementById("result-count");
 
       function renderImages(filter = "") {
         const keyword = filter.toLowerCase();
@@ -68,6 +88,7 @@
         gallery.innerHTML = filtered
           .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
           .join("");
+        resultCount.textContent = `共找到 ${filtered.length} 筆結果`;
       }
 
       searchInput.addEventListener("input", () => {
@@ -76,7 +97,8 @@
 
       renderImages(); // 預設顯示全部
     </script>
-   <c>由 ciyun415 建置</c>
-   <c>素材取材自sky wiki</c>
+    <div style="margin-top: 2em;">
+      <small>由 ciyun415 建置｜素材取材自 sky wiki</small>
+    </div>
   </body>
 </html>
