@@ -34,10 +34,33 @@
         font-weight: bold;
         color: #333;
       }
+      .lang-switch {
+        position: fixed;
+        top: 1em;
+        right: 1em;
+        z-index: 1000;
+      }
+
+     .lang-switch a {
+       font-size: 1.2em;
+       text-decoration: none;
+       padding: 0.4em 0.8em;
+       background-color: rgba(255, 255, 255, 0.7);
+       border-radius: 8px;
+       color: #333;
+       font-weight: bold;
+       transition: background-color 0.3s;
+     }
+
+.lang-switch a:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
     </style>
   </head>
   <body>
-    <a href="zh-cn.html">简</a>
+    <div class="lang-switch">
+     <a href="zh-cn.html">🔁简</a>
+    </div>
     <h1>光遇禮包圖鑑</h1>
     <input type="text" id="search" placeholder="關鍵字搜尋" />
     <div id="result-count"></div>
