@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift Pack</title>
+    <style>
+      body {
+        background-image: url('images/background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        font-family: sans-serif;
+        padding: 2em;
+        text-align: center;
+      }
+      input {
+        padding: 0.5em;
+        margin-bottom: 1em;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1em;
+      }
+      .gallery img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+      #result-count {
+        margin-bottom: 1em;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html">繁</a>
+    <h1>光遇礼包图鉴</h1>
+    <input type="text" id="search" placeholder="关键字搜寻" />
+    <div id="result-count"></div>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+      const images = [
+        { title: "15蜡烛包 $4.99美元", src: "images/15-candle-pack.png" },
+        { title: "30蜡烛包 $9.99美元", src: "images/30-candle-pack.png" },
+        { title: "60蜡烛包 $19.99美元", src: "images/60-candle-pack.png" },
+        { title: "150蜡烛包 $49.99美元", src: "images/150-candle-pack.png" },
+        { title: "季票 $9.99/$19.99美元", src: "images/Adventure-pass-IAP.png" },
+        { title: "季票(赠礼) $9.99美元", src: "images/Gift-Adventure-Pass.png" },
+        { title: "季蜡礼包 $4.99美元", src: "images/Seasonal-candle-pack.png" },
+        { title: "超值礼包 $4.99美元", src: "images/Starter_Pack_IAP.png" },
+        { title: "云流花旅礼包 $29.99美元", src: "images/TGC-Founder-Pack-Morybel-0146.png" },
+        { title: "TGC吉他礼包 $29.99美元", src: "images/TGC-Guitar-Pack-IAP-Morybel-0146.png" },
+        { title: "红蓝超值礼包 $24.99美元", src: "images/Nintendo_pack.png" },
+        { title: "雏鸟之琴 $4.99美元", src: "images/SOPerformance-Fledgling-harp-IAP-Morybel-0146.png" },
+        { title: "音韵吉他 $14.99美元", src: "images/SOPerformance-Rhythm-Guitar-IAP-Morybel-0146.png" },
+        { title: "凯旋手碟 $19.99美元", src: "images/SOPerformance-Triumph-Handpan-IAP-Morybel-0146.png" },
+        { title: "凯旋小提琴 $19.99美元", src: "images/Triumph-Violin-IAP-Credit-Morybel.png" },
+        { title: "新手竖式钢琴 $4.99美元", src: "images/Fledgling-upright-Piano-instrument-IAP.png" },
+        { title: "飞蛾赞赏礼包 $9.99美元", src: "images/Moth-Appreciation-pack-IAP.png" },
+        { title: "麻雀赞赏礼包 $9.99美元", src: "images/Sparrow-Appreciation-pack-IAP.png" },
+        { title: "《风之旅人》礼包 $24.99美元", src: "images/Journey-Pack-IAP-Morybel-0146.png" },
+        { title: "超凡《风之旅人》礼包 $24.99美元", src: "images/Transcendent-Journey-Pack-IAP.png" },
+        { title: "幸运橘 $0.99美元", src: "images/Days_of_Fortune_Orange_IAP.png" },
+        { title: "幸运绒线帽 $9.99美元", src: "images/Days_of_Fortune_Wool_Hat_IAP.png" },
+        { title: "幸运节礼包 $24.99美元", src: "images/Days_of_Fortune_Pack_IAP.png" },
+        { title: "幸运节鱼儿头饰 $1.99美元", src: "images/Days_of_fortune_fish_accessory_IAP.png" },
+        { title: "幸运节鱼儿礼包 $19.99美元", src: "images/Days_of_fortune_fish_pack_IAP.png" },
+        { title: "幸运节壁画家罩衫 $9.99美元", src: "images/Days-of-Fortune-Muralist-Smock-IAP-Morybel-0146.png" },
+        { title: "幸运节附魔雨伞 $14.99美元", src: "images/Days-of-Fortune-Enchanted-Umbrella-IAP-Morybel-0146.png" },
+        { title: "幸运节龙耳饰 $1.99美元", src: "images/Days-of-Fortune-Dragon-Bangles-IAP.png" },
+        { title: "幸运节龙斗篷 $14.99美元", src: "images/Days-of-Fortune-Dragon-Scarf-IAP.png" },
+        { title: "幸运节龙礼服 $9.99美元", src: "images/Days-of-Fortune-Dragon-Robe-IAP.png" },
+        { title: "幸运折扇 $4.99美元", src: "images/Days-of-Fortune-Hand-Fan-Prop-IAP.png" },
+        { title: "幸运蛇发与斗篷 $19.99美元", src: "images/Days-of-fortune-Snake-Cloak-Coif-IAP.png" }
+      ];
+
+      const gallery = document.getElementById("gallery");
+      const searchInput = document.getElementById("search");
+      const resultCount = document.getElementById("result-count");
+
+      function renderImages(filter = "") {
+        const keyword = filter.toLowerCase();
+        const filtered = images.filter(img => img.title.toLowerCase().includes(keyword));
+        gallery.innerHTML = filtered
+          .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
+          .join("");
+        resultCount.textContent = `共找到 ${filtered.length} 笔结果`;
+      }
+
+      searchInput.addEventListener("input", () => {
+        renderImages(searchInput.value);
+      });
+
+      renderImages(); // 預設顯示全部
+    </script>
+    <div style="margin-top: 2em;">
+      <small>由 ciyun415 建置｜素材取材自 sky wiki</small>
+    </div>
+  </body>
+</html>
