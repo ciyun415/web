@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API 測試</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gemini API 設定</h1>
+        <label for="apiKey">請輸入您的 Gemini API 金鑰：</label>
+        <input type="text" id="apiKey" name="apiKey" placeholder="YOUR_API_KEY">
+        <button onclick="testApiKey()">測試金鑰</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function testApiKey() {
+            const apiKey = document.getElementById("apiKey").value;
+            const messageDiv = document.getElementById("message");
+
+            if (apiKey) {
+                messageDiv.textContent = "API 金鑰已輸入。請注意，實際的 API 請求需要後端程式碼處理。";
+                // 在這裡，您通常會將 API 金鑰發送到後端伺服器進行驗證和 API 呼叫。
+                console.log("輸入的 API 金鑰:", apiKey);
+                // **重要安全提示：絕對不要直接在前端 JavaScript 中處理敏感的 API 金鑰！**
+                // 這只是為了演示輸入框的功能。
+            } else {
+                messageDiv.textContent = "請輸入您的 API 金鑰。";
+            }
+        }
+    </script>
+</body>
+</html>
