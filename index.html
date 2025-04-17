@@ -125,7 +125,7 @@
         const keyword = filter.toLowerCase();
         const filtered = images.filter(img => img.title.toLowerCase().includes(keyword));
         gallery.innerHTML = filtered
-          .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
+          .map(img => `<div><img src="${img.src}" alt="${img.title}" onerror="this.onerror=null;this.src='images/not-found.png';" /><p>${img.title}</p></div>`)
           .join("");
         resultCount.textContent = `共找到 ${filtered.length} 筆結果`;
       }
