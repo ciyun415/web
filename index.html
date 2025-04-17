@@ -122,11 +122,20 @@
       const resultCount = document.getElementById("result-count");
 
       function renderImages(filter = "") {
-        const keyword = filter.toLowerCase();
-        const filtered = images.filter(img => img.title.toLowerCase().includes(keyword));
-        gallery.innerHTML = filtered
-          .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
-          .join("");
+  const keyword = filter.toLowerCase();
+  const filtered = images.filter(img => img.title.toLowerCase().includes(keyword));
+
+  if (filtered.length === 0) {
+    gallery.innerHTML = `
+      <div>
+        <img src="images/not-found.png" alt="找不到圖片" />
+        <p>當前圖片還不可公開或圖片遺失</p>
+      </div>
+    `;
+  } else {
+    gallery.innerHTML = filtered
+      .map(img => `<div><img src="${img.src}" alt="${img.title}" /><p>${img.title}</p></div>`)
+      .join("");
         resultCount.textContent = `共找到 ${filtered.length} 筆結果`;
       }
 
