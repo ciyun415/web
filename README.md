@@ -1,4 +1,4 @@
-<img src="https://raw.github.com/ciyun415/web/images/Screenshot_20250420_002152_Chrome.png" width="400">
+<img src="https://raw.githubusercontent.com/ciyun415/web/refs/heads/main/images/Screenshot_20250420_002152_Chrome.png" width="400">
 
 # 光遇禮包圖鑑網站
 ## 繁：歡迎來到本專案，這裡是光遇禮包圖鑑，你可以在這裡查詢對應物品的美元價格💠注意，目前我們只打算以美元價格為主，詳細價格需要您自行換算，造成不便敬請見諒
