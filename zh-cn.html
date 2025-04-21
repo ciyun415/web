@@ -20,10 +20,16 @@
         margin-bottom: 1em;
       }
       .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1em;
-      }
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+@media (orientation: landscape) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
       .gallery img {
         max-width: 100%;
         height: auto;
