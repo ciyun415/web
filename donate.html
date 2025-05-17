@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>支付頁面</title>
+
+  <!-- 第 1 部分：PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAjePW8HvGUzmWuza-gfFchcWHdzMgkAr7faYIAPXg0AEhoMwgnBDT2yq43xoWIs2_bqszmnzxxhxOVK4&components=hosted-buttons&disable-funding=venmo&currency=TWD">
+  </script>
+</head>
+<body>
+  <h1>請完成付款</h1>
+  <p>點擊下方按鈕以透過 PayPal 完成支付：</p>
+
+  <!-- 第 2 部分：PayPal 按鈕容器與初始化 -->
+  <div id="paypal-container-UJTQL9TFAGAZ6"></div>
+  <script>
+    paypal.HostedButtons({
+      hostedButtonId: "UJTQL9TFAGAZ6",
+    }).render("#paypal-container-UJTQL9TFAGAZ6")
+  </script>
+</body>
+</html>
