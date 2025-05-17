@@ -6,6 +6,7 @@
 
 ## 專案網站連結🔗：https://ciyun415.github.io/web
 ## 聯絡窗口🔗：https://forms.gle/cVN4PhGaySDKGNPj7
+## 贊助我們🔗：https://ciyun415.github.io/web/donate
 
 ## 更新日誌🛠️
 - 20250422 新增SkyFest、陽光日禮包
